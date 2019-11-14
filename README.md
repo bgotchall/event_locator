@@ -1,2 +1,2 @@
-# event_locator
-Finds events based on a location
+# prototype
+This is my starter files.  has links to the libraries and stuff I need
