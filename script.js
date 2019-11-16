@@ -24,6 +24,14 @@ var TM_api_key = "3JcNn4ea56JrBolF27QIGsWgd58v9GSZ";
 //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&startDateTime=2019-11-15T01:00:00Z&endDateTime=2019-12-30T01:00:00Z&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 //console.log(queryURL);
 
+ //add in some default values so I don't go crazy: (get rid of this for release)////////
+ 
+ $("#location").val("Denver");
+ console.log($("#start_date"));
+ $("#start_date").val("2019-11-16");
+ $("#end_date").val("2019-12-20");
+ //////////////////////////////////
+
 $("#btn_submit").on("click", function (event) {
     event.preventDefault;
     var start_date=convert_date($("#start_date")[0].value);
@@ -32,8 +40,11 @@ $("#btn_submit").on("click", function (event) {
     var keyword=$("#search_field")[0].value;
     var location=$("#location")[0].value;
     console.log("location read is: "+location);
+
+   
+
     //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
-    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?&locale=*&city='+location+'&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 
     console.log(queryURL);
 
@@ -43,13 +54,14 @@ $("#btn_submit").on("click", function (event) {
         method: "GET"
     }).then(function (response) {
 
-        $("#table_info").empty();
+        $("#event_results").empty();
         var event_array = response._embedded.events;
         var new_table_row;
         var new_td;
         var new_th;
         var clean_date;
         console.log(response);
+        console.log($("#start_date"));
         console.log(event_array);
         draw_header();   //make a new header:
        
@@ -68,10 +80,10 @@ $("#btn_submit").on("click", function (event) {
             
             new_td = $("<td></td>");
             //check if there is an end date.  some things dont have any
-            clean_date = event_array[i].dates.end;
-            console.log ("end date: "+clean_date);
+            clean_date = event_array[i].classifications[0].segment.name;
+            console.log ("segment: "+clean_date);
             if (clean_date!=undefined){
-             clean_date = event_array[i].dates.end.dateTime.split("T")[0];  //have to make sure it is present in the object or this command throws an error
+            // clean_date = event_array[i].dates.end.dateTime.split("T")[0];  //have to make sure it is present in the object or this command throws an error
             } else { clean_date=" ";}
             $(new_td).text(clean_date);
             $(new_table_row).append(new_td);
@@ -87,7 +99,7 @@ $("#btn_submit").on("click", function (event) {
             // // $(new_td).innerHTML(new_img);        //empty for now, not sure this makes sense
             // $(new_table_row).append(new_td);
 
-            $("#table_info").append(new_table_row);
+            $("#event_results").append(new_table_row);
         }
 
 
@@ -108,6 +120,10 @@ function get_date_and_time(in_date){
     //and I need to output this: 8:30 pm Dec 29, 2019 
     //I need to convert for timezone... the api returns the timezone
     //America/Chicago
+    //America/New_York
+    //America/Denver
+    //America/Los_Angeles
+    //Pacific/Honolulu
 }
 
 function draw_header(){
@@ -124,5 +140,12 @@ function draw_header(){
         new_th = $("<th></th>");
         $(new_th).text("Location");
         $(new_table_row).append(new_th);
-        $("#table_info").append(new_table_row);
+        $("#event_results").append(new_table_row);
 }
+
+
+//the segments it can take are:
+//Music
+//Sports
+//Miscellaneous
+//Arts & Theatre
