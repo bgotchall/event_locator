@@ -12,7 +12,7 @@ var api_key = "6WXJHRCFYQFNXRVSBL";
 //  this works: https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ
 //search with a date range:
 //startDateTime=2019-11-15T01:00:00Z
-//endDateTime=2019-11-24  //q={"status": "GOLD"}
+//endDateTime=2019-11-24  
 //https://app.ticketmaster.com/discovery/v2/events.json?q={"postalCode":"78702"}&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ
 var TM_api_key = "3JcNn4ea56JrBolF27QIGsWgd58v9GSZ";
 //this works, searching zipcode and keyword:
@@ -57,15 +57,20 @@ $("#btn_submit").on("click", function (event) {
             $(new_td).text(clean_date);
             $(new_table_row).append(new_td);
 
-            console.log(event_array[i].images[1].url);
-            new_td = $("<td><img src=" + event_array[i].images[1].url + " height=" + 150 + " width=" + 300 + "></td>");
-            // var new_img=$('<img src='+event_array[i].images[3].url+'>');
-            // $(new_td).innerHTML(new_img);        //empty for now, not sure this makes sense
+            new_td = $("<td></td>");
+            var clean_date = event_array[i].dates.start.dateTime.split("T")[0];
+            $(new_td).text(clean_date);
             $(new_table_row).append(new_td);
 
 
             new_td = $("<td></td>");
             $(new_td).text(event_array[i]._embedded.venues[0].name);
+            $(new_table_row).append(new_td);
+
+            console.log(event_array[i].images[1].url);
+            new_td = $("<td><img src=" + event_array[i].images[1].url + " height=" + 150 + " width=" + 300 + "></td>");
+            // var new_img=$('<img src='+event_array[i].images[3].url+'>');
+            // $(new_td).innerHTML(new_img);        //empty for now, not sure this makes sense
             $(new_table_row).append(new_td);
 
             $("#table_info").append(new_table_row);
