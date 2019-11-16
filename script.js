@@ -33,7 +33,7 @@ $("#btn_submit").on("click", function (event) {
     var location=$("#location")[0].value;
     console.log("location read is: "+location);
     //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
-    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&radius=2000&units=miles&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?marketId=78702&radius=2000&units=miles&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 
     console.log(queryURL);
 
