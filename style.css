@@ -10,15 +10,8 @@
     margin: 50px;
     border: 5px solid goldenrod;
     box-shadow: 3px 3px 3px 3px rgb(99, 96, 96);
-  
-body {
-  background-image: url("./assets/concert.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 150%;
-
 }
-
+ 
 table, th, td {
     border: 2px solid goldenrod;
     border-collapse: collapse;
@@ -46,7 +39,11 @@ table, th, td {
   }
 
   body{
-      font-family: 'Merriweather Sans', sans-serif;
+    background-image: url("./assets/concert.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 150%;
+    font-family: 'Merriweather Sans', sans-serif;
   }
 
   .search{
