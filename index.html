@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
     <script
@@ -24,15 +25,23 @@
 
     <title>Prototype Project Files</title>
     <link rel="shortcut icon" href="./programming.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
+      <div class="w3-container w3-blue-grey head">
+        <h1 id="header">Find your event</h1>
+      </div>
+
     <div class="container">
+      <div class="w3-container main">
+        <div class="w3-container search">
       <input id="search_field">Search by</input>
       <input id="location">location</input>
       <input type="date" name="start" id="start_date">start date</input>
       <input type="date" name="end" id="end_date">end date</input>
       <input type="button" name="Submit" id="btn_submit">Submit</input>
       <hr><hr>
+      </div>
       <table  id="table_info">
           <tr>
             <th>Event Name</td>
@@ -46,6 +55,7 @@
 
 
       </table>
+    </div>
     </div>
 
     <script src="script.js"></script>
