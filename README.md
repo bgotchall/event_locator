@@ -12,3 +12,7 @@ Acceptance Criteria:
     a. Allows upper and lowercase characters
     b. Allows alphanumeric characters (numbers)
     c. Does not allow special characters
+
+
+
+    TEST - SERINA
