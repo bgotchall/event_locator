@@ -43,10 +43,29 @@ $("#btn_submit").on("click", function (event) {
         var event_array = response._embedded.events;
         var new_table_row;
         var new_td;
+        var new_th;
         console.log(response);
         console.log(event_array);
+
+        //make a new header:
+        new_table_row = $("<tr>");
+        new_th = $("<th></th>");
+        $(new_th).text("Event Name");
+        $(new_table_row).append(new_th);
+        new_th = $("<th></th>");
+        $(new_th).text("Start");
+        $(new_table_row).append(new_th);
+        new_th = $("<th></th>");
+        $(new_th).text("End");
+        $(new_table_row).append(new_th);
+        new_th = $("<th></th>");
+        $(new_th).text("Location");
+        $(new_table_row).append(new_th);
+        $("#table_info").append(new_table_row);
         //debugger;
         for (var i = 0; i < event_array.length; i++) {
+            
+
             new_table_row = $("<tr>");
             new_td = $("<td></td>");
             $(new_td).text(event_array[i].name);
@@ -58,7 +77,12 @@ $("#btn_submit").on("click", function (event) {
             $(new_table_row).append(new_td);
 
             new_td = $("<td></td>");
-            var clean_date = event_array[i].dates.start.dateTime.split("T")[0];
+            //check if there is an end date.  some things dont have any
+            var clean_date = event_array[i].dates.end;
+            console.log ("end date: "+clean_date);
+            if (clean_date!=undefined){
+             clean_date = event_array[i].dates.end.dateTime.split("T")[0];  //have to make sure it is present in the object or this command throws an error
+            }
             $(new_td).text(clean_date);
             $(new_table_row).append(new_td);
 
