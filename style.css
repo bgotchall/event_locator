@@ -20,6 +20,7 @@ body {
 }
 
 table, th, td {
+
     border: 2px solid goldenrod;
     border-collapse: collapse;
     box-shadow: 2px 2px 2px black;
