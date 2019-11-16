@@ -11,8 +11,17 @@
     border: 5px solid goldenrod;
     box-shadow: 3px 3px 3px 3px rgb(99, 96, 96);
 }
+  
+body {
+  background-image: url("./assets/concert.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 150%;
+
+}
  
 table, th, td {
+
     border: 2px solid goldenrod;
     border-collapse: collapse;
     box-shadow: 2px 2px 2px black;
