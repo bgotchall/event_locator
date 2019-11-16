@@ -33,7 +33,7 @@ $("#btn_submit").on("click", function (event) {
     var location=$("#location")[0].value;
     console.log("location read is: "+location);
     //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
-    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?marketId=78702&radius=2000&units=miles&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 
     console.log(queryURL);
 
@@ -81,11 +81,11 @@ $("#btn_submit").on("click", function (event) {
             $(new_td).text(event_array[i]._embedded.venues[0].name);
             $(new_table_row).append(new_td);
 
-            console.log(event_array[i].images[1].url);
-            new_td = $("<td><img src=" + event_array[i].images[1].url + " height=" + 150 + " width=" + 300 + "></td>");
-            // var new_img=$('<img src='+event_array[i].images[3].url+'>');
-            // $(new_td).innerHTML(new_img);        //empty for now, not sure this makes sense
-            $(new_table_row).append(new_td);
+            // console.log(event_array[i].images[1].url);
+            // new_td = $("<td><img src=" + event_array[i].images[1].url + " height=" + 150 + " width=" + 300 + "></td>");
+            // // var new_img=$('<img src='+event_array[i].images[3].url+'>');
+            // // $(new_td).innerHTML(new_img);        //empty for now, not sure this makes sense
+            // $(new_table_row).append(new_td);
 
             $("#table_info").append(new_table_row);
         }
