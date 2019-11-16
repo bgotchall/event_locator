@@ -3,3 +3,10 @@
 table, th, td {
     border: 1px solid black;
   }
+
+h3{
+  font: initial;
+  color: black;
+  font-size: large;
+  
+}
