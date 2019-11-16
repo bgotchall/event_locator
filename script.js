@@ -21,10 +21,8 @@ var TM_api_key = "3JcNn4ea56JrBolF27QIGsWgd58v9GSZ";
 //'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&startDateTime=2019-11-15T01:00:00Z&endDateTime=2019-12-30T01:00:00Z&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 //640x360 looks good
 
-queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&startDateTime=2019-11-15T01:00:00Z&endDateTime=2019-12-30T01:00:00Z&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
-
-
-console.log(queryURL);
+//queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&startDateTime=2019-11-15T01:00:00Z&endDateTime=2019-12-30T01:00:00Z&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+//console.log(queryURL);
 
 $("#btn_submit").on("click", function (event) {
     event.preventDefault;
@@ -32,8 +30,14 @@ $("#btn_submit").on("click", function (event) {
     var end_date=convert_date($("#end_date")[0].value);
     console.log($("#search_field")[0]);
     var keyword=$("#search_field")[0].value;
-    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+    var location=$("#location")[0].value;
+    console.log("location read is: "+location);
+    //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&radius=2000&units=miles&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+
     console.log(queryURL);
+
+    
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -44,25 +48,11 @@ $("#btn_submit").on("click", function (event) {
         var new_table_row;
         var new_td;
         var new_th;
+        var clean_date;
         console.log(response);
         console.log(event_array);
-
-        //make a new header:
-        new_table_row = $("<tr>");
-        new_th = $("<th></th>");
-        $(new_th).text("Event Name");
-        $(new_table_row).append(new_th);
-        new_th = $("<th></th>");
-        $(new_th).text("Start");
-        $(new_table_row).append(new_th);
-        new_th = $("<th></th>");
-        $(new_th).text("End");
-        $(new_table_row).append(new_th);
-        new_th = $("<th></th>");
-        $(new_th).text("Location");
-        $(new_table_row).append(new_th);
-        $("#table_info").append(new_table_row);
-        //debugger;
+        draw_header();   //make a new header:
+       
         for (var i = 0; i < event_array.length; i++) {
             
 
@@ -70,19 +60,19 @@ $("#btn_submit").on("click", function (event) {
             new_td = $("<td></td>");
             $(new_td).text(event_array[i].name);
             $(new_table_row).append(new_td);
-
+           
             new_td = $("<td></td>");
-            var clean_date = event_array[i].dates.start.dateTime.split("T")[0];
+            clean_date = event_array[i].dates.start.dateTime.split("T")[0];
             $(new_td).text(clean_date);
             $(new_table_row).append(new_td);
-
+            
             new_td = $("<td></td>");
             //check if there is an end date.  some things dont have any
-            var clean_date = event_array[i].dates.end;
+            clean_date = event_array[i].dates.end;
             console.log ("end date: "+clean_date);
             if (clean_date!=undefined){
              clean_date = event_array[i].dates.end.dateTime.split("T")[0];  //have to make sure it is present in the object or this command throws an error
-            }
+            } else { clean_date=" ";}
             $(new_td).text(clean_date);
             $(new_table_row).append(new_td);
 
@@ -113,4 +103,26 @@ function convert_date (in_date){
     return in_date+"T14:00:00Z";        //the time doesn't matter for this.
 }
 
+function get_date_and_time(in_date){
+    //here I am getting a time like this: 2019-12-29T02:30:00Z
+    //and I need to output this: 8:30 pm Dec 29, 2019 
+    //I need to convert for timezone... the api returns the timezone
+    //America/Chicago
+}
 
+function draw_header(){
+    new_table_row = $("<tr>");
+        new_th = $("<th></th>");
+        $(new_th).text("Event Name");
+        $(new_table_row).append(new_th);
+        new_th = $("<th></th>");
+        $(new_th).text("Start");
+        $(new_table_row).append(new_th);
+        new_th = $("<th></th>");
+        $(new_th).text("End");
+        $(new_table_row).append(new_th);
+        new_th = $("<th></th>");
+        $(new_th).text("Location");
+        $(new_table_row).append(new_th);
+        $("#table_info").append(new_table_row);
+}
