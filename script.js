@@ -23,6 +23,7 @@ var TM_api_key = "3JcNn4ea56JrBolF27QIGsWgd58v9GSZ";
 
 //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&startDateTime=2019-11-15T01:00:00Z&endDateTime=2019-12-30T01:00:00Z&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 //console.log(queryURL);
+var location;
 
 $("#btn_submit").on("click", function (event) {
     event.preventDefault;
@@ -33,7 +34,7 @@ $("#btn_submit").on("click", function (event) {
     var location=$("#location")[0].value;
     console.log("location read is: "+location);
     //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
-    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+location+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 
     console.log(queryURL);
 
