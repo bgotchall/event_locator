@@ -25,9 +25,9 @@ table, th, td {
     border: 2px solid goldenrod;
     border-collapse: collapse;
     box-shadow: 2px 2px 2px black;
-    color: wheat;
-    width: 550px;
-    font-size: 25px;
+    color: black;
+    width: 900px;
+    font-size: 20px;
   }
 
   #header{
@@ -58,7 +58,15 @@ table, th, td {
   .search{
       background: lightsteelblue;
       padding: 30px;
-      margin: 50px;
       border: 2px solid goldenrod;
+      margin: 50px;
       box-shadow: 3px 3px 3px dimgrey;
+  }
+
+  #search-field {
+      margin-left: 65px;
+  }
+
+  h3 {
+      text-align: center;
   }

@@ -37,19 +37,22 @@
     <div class="container">
       <div class="w3-container main">
         <div class="w3-container search">
-          <div class="Search">Search by</div>
+          <label for="Search"><strong>Search By Event:</strong></label>
+         <div class="Search"></div>
         <input id="search_field"></input>
-      <input id="location">location</input>
-      <input type="date" name="start" id="start_date">start date</input>
-      <input type="date" name="end" id="end_date">end date</input>
-      <input type="button" name="Submit" id="btn_submit">Submit</input>
+        <label for="location"><strong>Location:</strong></label>
+      <input id="location"></input>
+      <label for="date"><strong>Start Date:</strong></label>
+      <input type="date" name="start" id="start_date"></input>
+      <!--<input type="date" name="end" id="end_date">end date</input>-->
+      <input class="w3-button w3-green" type ="button" value="Submit" id="btn_submit"></input>
       <hr><hr>
       
       <table id="event_results">
         <tr>
           <th>Event Name</th>
           <th>Start Date</th>
-          <th>End Date</th>
+         <th>End Date</th>
           <th>Location</th>
           <th>Price</th>
         </tr>
