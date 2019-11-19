@@ -39,22 +39,34 @@
     <div class="container">
       <div class="w3-container main">
         <div class="w3-container search">
+ 
 
       <input id="search_field" placeholder="Search by"></input>
-      <input id="location" placeholder="location"></input>
-
-      <input type="date" name="start" id="start_date">start date</input>
-      <input type="date" name="end" id="end_date">end date</input>
-      <button id="btn_submit"  class="fa fa-search w3-circle"></button>
+       <input id="location" placeholder="Location"></input>
+       <label for="start-date">Start Date</label>
+      <input type="date" name="start" id="start_date"></input>
+      <label for="end-date">End Date</label>
+      <input type="date" name="end" id="end_date"></input>
+      <button id="btn_submit" class="fa fa-search w3-circle"></button>
       <!-- <input type="button" name="Submit" id="btn_submit" class="w3-button w3-circle w3-indigo">submit</input> -->
-      <hr><hr>
+
+         <!-----<label for="Search"><strong>Search By Event:</strong></label>-->
+        <!---- <div class="Search"></div>-->
+       <!---- <input id="search_field"></input>-->
+       
+     <!---- <label for="date"><strong>Start Date:</strong></label>-->
+      <!--<input type="date" name="start" id="start_date"></input>-->
+      <!--<input type="date" name="end" id="end_date">end date</input>-->
+      <!--<input class="w3-button w3-green" type ="button" value="Submit" id="btn_submit"></input>-->
+
+      
         </div>
       
       <table id="event_results">
         <tr>
           <th>Event Name</th>
           <th>Start Date</th>
-          <th>End Date</th>
+         <th>End Date</th>
           <th>Location</th>
           <th>Price</th>
         </tr>
@@ -95,12 +107,19 @@
                 </tr> 
 
       </table>
+
       <footer class="w3-container footer">
       <h3>Event Name Details</h3>
       <hr>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione porro, odit aspernatur, beatae voluptatem omnis accusantium suscipit sapiente rem maiores, aperiam neque quas! Suscipit at a doloremque corrupti illo dolor.</p>
       <p>Current Weather: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum doloribus amet libero accusantium enim modi sint in saepe quis praesentium distinctio autem suscipit exercitationem odit, molestias placeat provident? Porro, numquam.</p>
       </footer>
+
+     <!---- <h3><strong>Event Details</strong></h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione porro, odit aspernatur, beatae voluptatem omnis accusantium suscipit sapiente rem maiores, aperiam neque quas! Suscipit at a doloremque corrupti illo dolor.</p>
+      <p><strong>Current Weather:</strong> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum doloribus amet libero accusantium enim modi sint in saepe quis praesentium distinctio autem suscipit exercitationem odit, molestias placeat provident? Porro, numquam.</p>-->
+    </div>
+
     </div>
 
     <script src="script.js"></script>
