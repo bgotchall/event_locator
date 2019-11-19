@@ -22,6 +22,8 @@
 
     <link rel="stylesheet" type="text/css" href="normalize.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <title>Prototype Project Files</title>
     <link rel="shortcut icon" href="./programming.png"/>
@@ -29,7 +31,7 @@
   </head>
   <body>
 
-      <div class="w3-container w3-blue-grey head">
+      <div class="w3-container head">
         <h1 id="header">Find your event</h1>
          <h3>Find events in your hometown or surrounding areas!</h3>
       </div>
@@ -37,12 +39,15 @@
     <div class="container">
       <div class="w3-container main">
         <div class="w3-container search">
-      <input id="search_field">Search by</input>
-      <input id="location">location</input>
+
+      <input id="search_field" placeholder="Search by"></input>
+
       <input type="date" name="start" id="start_date">start date</input>
       <input type="date" name="end" id="end_date">end date</input>
-      <input type="button" name="Submit" id="btn_submit">Submit</input>
+      <button id="btn_submit" class="fa fa-search w3-circle"></button>
+      <!-- <input type="button" name="Submit" id="btn_submit" class="w3-button w3-circle w3-indigo">submit</input> -->
       <hr><hr>
+        </div>
       
       <table id="event_results">
         <tr>
@@ -89,10 +94,12 @@
                 </tr> 
 
       </table>
+      <footer class="w3-container footer">
       <h3>Event Name Details</h3>
+      <hr>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione porro, odit aspernatur, beatae voluptatem omnis accusantium suscipit sapiente rem maiores, aperiam neque quas! Suscipit at a doloremque corrupti illo dolor.</p>
       <p>Current Weather: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum doloribus amet libero accusantium enim modi sint in saepe quis praesentium distinctio autem suscipit exercitationem odit, molestias placeat provident? Porro, numquam.</p>
-    </div>
+      </footer>
     </div>
 
     <script src="script.js"></script>

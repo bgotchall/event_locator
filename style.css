@@ -1,15 +1,18 @@
-
 .main{
-    background-color: slategrey;
-    height: 500px;
-    width: 80%;
+    background-color: rgb(23, 23, 41);
+    height: 550px;
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     margin: 50px;
-    border: 5px solid goldenrod;
-    box-shadow: 3px 3px 3px 3px rgb(99, 96, 96);
+
+    border: 4px solid goldenrod;
+    box-shadow: 3px 3px 3px 3px black;
+    overflow: auto;
+    clear: both;
+
 }
   
 body {
@@ -21,11 +24,10 @@ body {
 }
 
 table, th, td {
-
     border: 2px solid goldenrod;
     border-collapse: collapse;
     box-shadow: 2px 2px 2px black;
-    color: wheat;
+    color:seashell;
     width: 550px;
     font-size: 25px;
   }
@@ -33,7 +35,7 @@ table, th, td {
   #header{
       text-align: center;
       font-family: 'Merriweather Sans', sans-serif;
-      color: wheat;
+      color: seashell;
   }
 
   .container{
@@ -42,9 +44,15 @@ table, th, td {
       align-items: center;
   }
 
+  h3, p{
+      color: seashell;
+      text-align: center;
+  }
+
   .head{
       border: 3px solid goldenrod;
-      box-shadow: 3px 3px 3px gray;
+      box-shadow: 3px 3px 3px black;
+      background-color: slategray;
   }
 
   body{
@@ -52,9 +60,38 @@ table, th, td {
   }
 
   .search{
-      background: lightsteelblue;
+      width: 100%;
+      background: slategray;
       padding: 30px;
       margin: 50px;
       border: 2px solid goldenrod;
-      box-shadow: 3px 3px 3px dimgrey;
+      box-shadow: 3px 3px 3px black;
+      justify-content: center;
+      align-items: center;
+  }
+
+  #btn_submit{
+    border: 1px solid goldenrod; 
+    box-shadow: 1px 1px 1px 1px black; 
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    background: slategray;
+    font-size: 25px;
+  }
+
+  input {
+      margin: 10px;
+      padding: 5px;
+  }
+
+  input:focus{
+      background-color: rgb(253, 242, 143);
+  }
+
+  .footer{
+      background: slategray;
+      margin: 20px;
+      border: 2px solid goldenrod;
+      box-shadow: 2px 2px 2px black;
   }
