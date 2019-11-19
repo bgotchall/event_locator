@@ -22,14 +22,16 @@ body {
   background-size: 150%;
 
 }
-
+ 
 table, th, td {
     border: 2px solid goldenrod;
     border-collapse: collapse;
     box-shadow: 2px 2px 2px black;
+
     color:seashell;
-    width: 550px;
-    font-size: 25px;
+         width: 900px;
+    font-size: 20px;
+
   }
 
   #header{
@@ -56,15 +58,19 @@ table, th, td {
   }
 
   body{
-      font-family: 'Merriweather Sans', sans-serif;
+    background-image: url("./assets/concert.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 150%;
+    font-family: 'Merriweather Sans', sans-serif;
   }
 
   .search{
       width: 100%;
       background: slategray;
       padding: 30px;
-      margin: 50px;
       border: 2px solid goldenrod;
+<<<<<<< HEAD
       box-shadow: 3px 3px 3px black;
       justify-content: center;
       align-items: center;
@@ -94,4 +100,16 @@ table, th, td {
       margin: 20px;
       border: 2px solid goldenrod;
       box-shadow: 2px 2px 2px black;
+=======
+      margin: 50px;
+      box-shadow: 3px 3px 3px dimgrey;
+  }
+
+  #search-field {
+      margin-left: 65px;
+  }
+
+  h3 {
+      text-align: center;
+>>>>>>> serinabranch
   }
