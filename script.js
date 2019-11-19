@@ -34,6 +34,7 @@ var TM_api_key = "3JcNn4ea56JrBolF27QIGsWgd58v9GSZ";
 
 $("#btn_submit").on("click", function (event) {
     event.preventDefault;
+    debugger;
     var start_date=convert_date($("#start_date")[0].value);
     var end_date=convert_date($("#end_date")[0].value);
     console.log($("#search_field")[0]);
