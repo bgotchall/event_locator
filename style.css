@@ -70,7 +70,6 @@ table, th, td {
       background: slategray;
       padding: 30px;
       border: 2px solid goldenrod;
-<<<<<<< HEAD
       box-shadow: 3px 3px 3px black;
       justify-content: center;
       align-items: center;
@@ -100,16 +99,4 @@ table, th, td {
       margin: 20px;
       border: 2px solid goldenrod;
       box-shadow: 2px 2px 2px black;
-=======
-      margin: 50px;
-      box-shadow: 3px 3px 3px dimgrey;
-  }
-
-  #search-field {
-      margin-left: 65px;
-  }
-
-  h3 {
-      text-align: center;
->>>>>>> serinabranch
   }
