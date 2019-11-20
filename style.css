@@ -15,13 +15,6 @@
 
 }
   
-body {
-  background-image: url("./assets/concert.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 150%;
-
-}
  
 table, th, td {
     border: 2px solid goldenrod;
@@ -58,10 +51,10 @@ table, th, td {
   }
 
   body{
-    background-image: url("./assets/concert.jpg");
+    /* background-image: url("./assets/concert.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 150%;
+    background-size: 150%; */
     font-family: 'Merriweather Sans', sans-serif;
   }
 
@@ -100,3 +93,21 @@ table, th, td {
       border: 2px solid goldenrod;
       box-shadow: 2px 2px 2px black;
   }
+
+  .result_card{
+      color:white;
+    justify-content: left;
+    align-items: left;
+    height: 200px;
+    background-color:white;
+    margin:20px;
+  }
+
+  .event_name{
+    color: white;
+    justify-content: left;
+    align-items: left;
+
+  }
+
+  
