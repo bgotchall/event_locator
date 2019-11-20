@@ -106,9 +106,13 @@ $("#btn_submit").on("click", function (event) {
             $(new_card_row).css("background-image","url("+best_picture_url+")" );  
             $(new_card_row).css("background-repeat","no-repeat");
             $(new_card_row).css("background-size","cover");
-           
             $(new_card_row).append(new_td);
 
+            ////////sales link////////
+            new_td = $("<a class='ticket_sales_link'  target='_blank'> Ticket Sales</a>");
+            console.log("sales link will be: "+ event_array[i].url)
+            $(new_td).attr("href",event_array[i].url)
+            $(new_card_row).append(new_td);
                 
             //add other stuff to card before adding the div
 
