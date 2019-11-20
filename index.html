@@ -17,6 +17,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
   <link rel="stylesheet" type="text/css" href="normalize.css" />
   <link rel="stylesheet" type="text/css" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -68,51 +70,7 @@
         <!-- </div>
       </div> -->
 
-      <table id="event_results">
-        <tr>
-          <th>Event Name</th>
-          <th>Start Date</th>
-          <th>End Date</th>
-          <th>Location</th>
-          <th>Price</th>
-        </tr>
-        <tr>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-        </tr>
-        <tr>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-        </tr>
-        <tr>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-        </tr>
-        <tr>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-        </tr>
-        <tr>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-          <td>#</td>
-        </tr>
-
-      </table>
+     
 
       <footer class="w3-container footer">
         <h3>Event Name Details</h3>
@@ -131,6 +89,19 @@
     </div>
 
   </div>
+
+<!-- The Modal -->
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'"
+        class="w3-button w3-display-topright">&times;</span>
+        <p id="modal_p1">Some text in the Modal..</p>
+        <p id="modal_p2">Some text in the Modal..</p>
+      </div>
+    </div>
+  </div>
+
 
   <script src="script.js"></script>
 </body>
