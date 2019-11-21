@@ -7,31 +7,16 @@
 var api_key = "6WXJHRCFYQFNXRVSBL";
 
 //ticketmaster stuff:
-//https://app.ticketmaster.com/discovery/v2/events.json?apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ
-// search with a zipcode: 
-//  this works: https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ
-//search with a date range:
-//startDateTime=2019-11-15T01:00:00Z
-//endDateTime=2019-11-24  
-//https://app.ticketmaster.com/discovery/v2/events.json?q={"postalCode":"78702"}&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ
 var TM_api_key = "3JcNn4ea56JrBolF27QIGsWgd58v9GSZ";
-//this works, searching zipcode and keyword:
-//queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword=surface&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
-//this works for location and dates:
-//'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&startDateTime=2019-11-15T01:00:00Z&endDateTime=2019-12-30T01:00:00Z&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
-//640x360 looks good
-
-//queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&startDateTime=2019-11-15T01:00:00Z&endDateTime=2019-12-30T01:00:00Z&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
-//console.log(queryURL);
 var location;
 
-//add in some default values so I don't go crazy: (get rid of this for release)////////
-
+//////add in some default values so I don't go crazy: (get rid of this for release)////////
 //to do list for bob:  
-//1) make the date and time nice
-//2) add the "buy tickets" link
-//3) choose the best picture to use based on the resolution
-
+//1) filter by checkboxes.
+//2) add in venue info
+//3) start with a default search
+//4) weather info?
+////////////////////////////////////////////////////////////////
 
 $("#location").val("Austin");
 console.log($("#start_date"));
@@ -67,7 +52,6 @@ $("#btn_submit").on("click", function (event) {
         event_array = response._embedded.events;
         
         var new_td;
-        var new_th;
         var clean_date;
         var timeZone;
         console.log(response);
@@ -106,6 +90,9 @@ $("#btn_submit").on("click", function (event) {
             $(new_card_row).css("background-image","url("+best_picture_url+")" );  
             $(new_card_row).css("background-repeat","no-repeat");
             $(new_card_row).css("background-size","cover");
+            
+           
+  
             $(new_card_row).append(new_td);
 
             ////////sales link////////
