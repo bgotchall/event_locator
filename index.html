@@ -42,16 +42,20 @@
  
 
       <input id="search_field" placeholder="Search by"></input>
-       <input id="location" placeholder="Location"></input><br>
+       <input id="location" placeholder="Location"></input>
 
+       <label>Music</label>
        <input class="w3-check" type="checkbox" id="music">
-          <label>Music</label>
+
+       <label>Sports</label>   
 <input class="w3-check" type="checkbox" id="sports">
-   <label>Sports</label>
+
+  <label>Arts and Theater</label>
    <input class="w3-check" type="checkbox" id="arts-theater">
-<label>Arts and Theater</label>
-<input class="w3-check" type="checkbox" id="misc">
-<label>Misc</label><br>
+
+<label>Misc</label>
+<input class="w3-check" type="checkbox" id="misc"><br>
+
        <label for="start-date">Start Date</label>
       <input type="date" name="start" id="start_date"></input>
       <label for="end-date">End Date</label>
@@ -117,14 +121,30 @@
 
       </table>
 
-      <footer class="w3-container footer">
-      <h3>Event Name Details</h3>
+      <!--div id="mwindow" class="w3-modal">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <span onclick="document.getElementById('mwindow').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+            <p>Event Details: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione porro, odit aspernatur, </p>
+            <p>Currently cold..</p>
+          </div>
+        </div>
+      </div>-->
+
+     <footer class="w3-container footer">
+      <h3>Event Details</h3>
       <hr>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione porro, odit aspernatur, beatae voluptatem omnis accusantium suscipit sapiente rem maiores, aperiam neque quas! Suscipit at a doloremque corrupti illo dolor.</p>
-      <p>Current Weather: Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum doloribus amet libero accusantium enim modi sint in saepe quis praesentium distinctio autem suscipit exercitationem odit, molestias placeat provident? Porro, numquam.</p>
+      <p>Current Weather:</p>
+      <div class="temperature" id="temp">
+        <div class="icon" id="weather-icon"><img src="">
+      </div>
+      </div>
+      </footer>
       </footer>
 
-     <!---- <h3><strong>Event Details</strong></h3>
+     <!--<h3><strong>Event Details</strong></h3>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione porro, odit aspernatur, beatae voluptatem omnis accusantium suscipit sapiente rem maiores, aperiam neque quas! Suscipit at a doloremque corrupti illo dolor.</p>
       <p><strong>Current Weather:</strong> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum doloribus amet libero accusantium enim modi sint in saepe quis praesentium distinctio autem suscipit exercitationem odit, molestias placeat provident? Porro, numquam.</p>-->
     </div>

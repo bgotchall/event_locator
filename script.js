@@ -21,28 +21,44 @@ var TM_api_key = "3JcNn4ea56JrBolF27QIGsWgd58v9GSZ";
 //'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&startDateTime=2019-11-15T01:00:00Z&endDateTime=2019-12-30T01:00:00Z&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 //640x360 looks good
 
+//WeatherApp stuff 
+//api.openweathermap.org/data/2.5/weather?q=
+var w_api_key = "1dd029263e9a36200e5256b3f8ab4a28";
+
+
 //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&startDateTime=2019-11-15T01:00:00Z&endDateTime=2019-12-30T01:00:00Z&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 //console.log(queryURL);
 var location;
 
-$("#btn_submit").on("click", function (event) {
+$("#btn_submit").on("click", event);
+
+    function event() {
     event.preventDefault;
     var start_date=convert_date($("#start_date")[0].value);
     var end_date=convert_date($("#end_date")[0].value);
     console.log($("#search_field")[0]);
     var keyword=$("#search_field")[0].value;
     var location=$("#location")[0].value;
+    var weather=$(".temp").value;
     console.log("location read is: "+location);
     //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
     queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+location+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+  
+var icon = document.getElementById('#weather-icon');
+    
 
-    console.log(queryURL);
-
+    //Retrieving weather app data
+var queryURL =  "https://api.openweathermap.org/data/2.5/weather?q=" + location + "&units=&imperia&appid=1dd029263e9a36200e5256b3f8ab4a28";
     
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function (response) {
+    
+    })
+    .then(function (response) {
+
+        $(".temp").html("Temp: " + response.main.temp + "°F");
+        $(".icon").html("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png");
 
         $("#table_info").empty();
         var event_array = response._embedded.events;
@@ -53,6 +69,9 @@ $("#btn_submit").on("click", function (event) {
         console.log(response);
         console.log(event_array);
         draw_header();   //make a new header:
+
+        console.log(queryURL);
+    console.log(response);
        
         for (var i = 0; i < event_array.length; i++) {
             
@@ -95,7 +114,7 @@ $("#btn_submit").on("click", function (event) {
     });
 
 
-})
+
 
 function convert_date (in_date){
 //convert a date from an input date field into the format that the API wants:
@@ -127,3 +146,4 @@ function draw_header(){
         $(new_table_row).append(new_th);
         $("#table_info").append(new_table_row);
 }
+    }
