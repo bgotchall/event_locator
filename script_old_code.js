@@ -37,8 +37,6 @@ $("#location").val("Austin");
 console.log($("#start_date"));
 $("#start_date").val("2019-11-16");
 $("#end_date").val("2019-12-20");
-
-var event_array ;
 //////////////////////////////////
 
 $("#btn_submit").on("click", function (event) {
@@ -51,6 +49,9 @@ $("#btn_submit").on("click", function (event) {
     var location = $("#location")[0].value;
     console.log("location read is: " + location);
 
+
+
+
     //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
     queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?&locale=*&city=' + location + '&keyword=' + keyword + '&startDateTime=' + start_date + '&endDateTime=' + end_date + '&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 
@@ -62,10 +63,9 @@ $("#btn_submit").on("click", function (event) {
         method: "GET"
     }).then(function (response) {
 
-        
-        $("#card_container").empty();
-        event_array = response._embedded.events;
-        
+        $("#event_results").empty();
+        var event_array = response._embedded.events;
+        var new_table_row;
         var new_td;
         var new_th;
         var clean_date;
@@ -73,51 +73,70 @@ $("#btn_submit").on("click", function (event) {
         console.log(response);
         console.log($("#start_date"));
         console.log(event_array);
-        
+        draw_header();   //make a new header:
 
         for (var i = 0; i < event_array.length; i++) {
             //debugger;
-            new_card_row = $("<div></div>");
-            $(new_card_row).addClass("w3-row result_card");
-            $(new_card_row).attr("index",i);                //add the index so we can quicklky get which thing the user is interested in.
-
+            new_table_row = $("<div></div>");
+            $(new_table_row).addClass("w3-row result_card");
 
             ////////Event name///////////////////
             new_td = $("<h3>");
             $(new_td).text(event_array[i].name);
-            $(new_card_row).append(new_td);
+            $(new_table_row).append(new_td);
 
+            if (true){
             /////////date ("start date")//////////////
             new_td = $("<h3>");
             timeZone = event_array[i].dates.timezone;
-            var my_date_string = get_date_and_time(event_array[i].dates.start.dateTime, timeZone);
-            $(new_td).text(my_date_string);
-            $(new_card_row).append(new_td);
+            //clean_date = event_array[i].dates.start.dateTime.split("T")[0];
+            var my_thing = get_date_and_time(event_array[i].dates.start.dateTime, timeZone);
+            $(new_td).text(clean_date);
+            $(new_table_row).append(new_td);
 
+            // new_td = $("<td></td>");
+            // //check if there is an end date.  some things dont have any
+            // clean_date = event_array[i].classifications[0].segment.name;
+            // console.log("segment: " + clean_date);
+            // if (clean_date != undefined) {
+                
+            //     // clean_date = event_array[i].dates.end.dateTime.split("T")[0];  //have to make sure it is present in the object or this command throws an error
+            // } else { clean_date = " "; }
+            // $(new_td).text(clean_date);
+            // $(new_table_row).append(new_td);
 
             /////////venue/////////////
             new_td = $("<h3>");
             $(new_td).text(event_array[i]._embedded.venues[0].name);
-            $(new_card_row).append(new_td);
+            $(new_table_row).append(new_td);
 
             //////////picture////////////
-            //iterate through the images to find a big hi res one.
+            console.log(event_array[i].images[1].url);
             var best_picture_url=get_best_url(event_array[i].images);
-            $(new_card_row).css("background-image","url("+best_picture_url+")" );  
-            $(new_card_row).css("background-repeat","no-repeat");
-            $(new_card_row).css("background-size","cover");
-            $(new_card_row).append(new_td);
+            //iterate through the images to find a big hi res one.
+           // new_td = $("<img src=" + event_array[i].images[1].url + " height=" + 150 + " width=" + 300 + ">");
+            $(new_table_row).css("background-image","url("+best_picture_url+")" );  
+            $(new_table_row).css("background-repeat","no-repeat");
+            $(new_table_row).css("background-size","cover");
+           
 
-            ////////sales link////////
-            new_td = $("<a class='ticket_sales_link'  target='_blank'> Ticket Sales</a>");
-            console.log("sales link will be: "+ event_array[i].url)
-            $(new_td).attr("href",event_array[i].url)
-            $(new_card_row).append(new_td);
-                
-            //add other stuff to card before adding the div
 
-            
-            $("#card_container").append(new_card_row);
+            // var new_img=$('<img src='+event_array[i].images[3].url+'>');
+            // $(new_td).innerHTML(new_img);        //empty for now, not sure this makes sense
+            $(new_table_row).append(new_td);
+
+                //card experiment
+               // $("#first_card").css("background")
+
+            //    <div class="w3-row result_card" >
+            //   <h3 class="event_name">Quirky Play</h3>
+            //   <h5 class="venue">Venue Spot</h5>
+            //   <h5 class="date"> 5:30pm Dec 25, 2019</h5>
+            // </div>
+
+            }
+
+            $("#card_container").append(new_table_row);
         }
 
 
@@ -125,21 +144,6 @@ $("#btn_submit").on("click", function (event) {
 
 
 })
-
-$(document).on('click','.result_card',function(event){
-    //click handler for the result cards.  pop up a modal window on this.
-    console.log(event);
-         console.log("card was clicked?");
-         document.getElementById('id01').style.display='block';
-         var this_index= $(event.currentTarget).attr("index");
-         var this_item=event_array[this_index];
-         $("#modal_p1").text(this_item.name);
-         $("#modal_p2").text("Weather stuff here");
-         console.log(this_item);
-
-});
-
-
 
 function convert_date(in_date) {
     //convert a date from an input date field into the format that the API wants:
@@ -152,20 +156,69 @@ function get_date_and_time(in_date, timeZone) {
     //here I am getting a time like this: 2019-12-29T02:30:00Z
     //and I need to output this: 8:30 pm Dec 29, 2019 
     //I need to convert for timezone... the api returns the timezone
+var time_delta;
+var date_first_part;
+var date_second_part;
+var year;
+var month;
+var day;
+//debugger;
+date_first_part = in_date.split("T")[0];
+date_second_part=in_date.split("T")[1];
+
+console.log(in_date);
+console.log(date_first_part);
+console.log(in_date);
+    switch (timeZone) {
+        case "America/New_York":
+            time_delta=-5;
+            break;
+        case "America/Chicago":
+            time_delta=-6;
+            break;
+        case "America/Denver":
+            time_delta=-7;
+            break;
+        case "America/Los_Angeles":
+            time_delta=-8;
+            break;
+        case "Pacific/Honolulu":
+            time_delta=-10;
+            break;
+        default:
+            break;
+    }
 
 
-var string_so_far="";
 
-var my_thing=moment(in_date,'' ,true).format('LT');
-    string_so_far=moment(in_date,'' ,true).format('LT')+" "+moment(in_date,'' ,true).format('LL');
-    return string_so_far
+    //America/Chicago
+    //America/New_York
+    //America/Denver
+    //America/Los_Angeles
+    //Pacific/Honolulu
 }
 
-
+function draw_header() {
+    new_table_row = $("<tr>");
+    new_th = $("<th></th>");
+    $(new_th).text("Event Name");
+    $(new_table_row).append(new_th);
+    new_th = $("<th></th>");
+    $(new_th).text("Start");
+    $(new_table_row).append(new_th);
+    new_th = $("<th></th>");
+    $(new_th).text("End");
+    $(new_table_row).append(new_th);
+    new_th = $("<th></th>");
+    $(new_th).text("Location");
+    $(new_table_row).append(new_th);
+    $("#event_results").append(new_table_row);
+}
 
 function get_best_url(images){
     //search through the provided images and find the largest 16x9 photo.
-    
+    console.log("images are: ")
+    console.log(images)
     var best_url= images[0].url;    
     var biggest_size=0;    
     for (var i=0; i<images.length;i++){
