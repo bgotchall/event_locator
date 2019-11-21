@@ -16,9 +16,10 @@ var location;
 //2) add in venue info
 //3) start with a default search
 //4) weather info?
+//5) add in longer description, if available
 ////////////////////////////////////////////////////////////////
 
-$("#location").val("Austin");
+$("#location").val("New York");
 console.log($("#start_date"));
 $("#start_date").val("2019-11-16");
 $("#end_date").val("2019-12-20");
@@ -34,12 +35,47 @@ $("#btn_submit").on("click", function (event) {
     console.log($("#search_field")[0]);
     var keyword = $("#search_field")[0].value;
     var location = $("#location")[0].value;
+
+    //genres:
+    
+    var cb_music=$("#music").prop('checked')
+    var cb_sports=$("#sports").prop('checked')
+    var cb_arts_theater=$("#arts-theater").prop('checked')
+    var cb_misc=$("#misc").prop('checked')
+
+    var genre_string="";
+    if (cb_music||cb_sports||cb_arts_theater||cb_misc){genre_string="&segmentId="   } //only start this if something is selected
+    if (cb_music){genre_string+="KZFzniwnSyZfZ7v7nJ,"}
+    if (cb_sports){genre_string+="KZFzniwnSyZfZ7v7nE,"}
+    if (cb_arts_theater){genre_string+="KZFzniwnSyZfZ7v7na,"}
+    if (cb_misc){genre_string+="KZFzniwnSyZfZ7v7n1"}
+    
+    console.log (genre_string);
+
     console.log("location read is: " + location);
 
     //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
-    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?&locale=*&city=' + location + '&keyword=' + keyword + '&startDateTime=' + start_date + '&endDateTime=' + end_date + '&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?'+genre_string+'&locale=*&city=' + location + '&keyword=' + keyword + '&startDateTime=' + start_date + '&endDateTime=' + end_date + '&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 
     console.log(queryURL);
+
+    // $.ajax({
+    //     type:"GET",
+    //     url:"https://app.ticketmaster.com/discovery/v2/classifications.json?apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ",
+    //     //url:"https://app.ticketmaster.com/discovery/v2/classifications/vvG1GZ4lKsG0Ce.json?apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ",
+    //     async:true,
+    //     dataType: "json",
+    //     success: function(json) {
+    //                 console.log("here is the id details");
+    //                 console.log(json);
+    //                 // Parse the response.
+    //                 // Do other things.
+    //              },
+    //     error: function(xhr, status, err) {
+    //                 // This time, we do not end up here!
+    //              }
+    //   });
+
 
 
     $.ajax({
@@ -97,7 +133,7 @@ $("#btn_submit").on("click", function (event) {
 
             ////////sales link////////
             new_td = $("<a class='ticket_sales_link'  target='_blank'> Ticket Sales</a>");
-            console.log("sales link will be: "+ event_array[i].url)
+            //console.log("sales link will be: "+ event_array[i].url)
             $(new_td).attr("href",event_array[i].url)
             $(new_card_row).append(new_td);
                 
