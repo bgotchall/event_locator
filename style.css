@@ -1,116 +1,149 @@
-.main{
-    background-color: rgb(23, 23, 41);
-    height: 550px;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 50px;
+.main {
+  background-color: rgb(23, 23, 41);
+  height: 550px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 30px;
 
-    border: 4px solid goldenrod;
-    box-shadow: 3px 3px 3px 3px black;
-    overflow: auto;
-    clear: both;
-
+  border: 4px solid goldenrod;
+  box-shadow: 3px 3px 3px 3px black;
+  overflow: auto;
+  clear: both;
 }
-  
- 
-table, th, td {
-    border: 2px solid goldenrod;
-    border-collapse: collapse;
-    box-shadow: 2px 2px 2px black;
 
-    color:seashell;
-         width: 900px;
-    font-size: 20px;
+table,
+th,
+td {
+  border: 2px solid goldenrod;
+  border-collapse: collapse;
+  box-shadow: 2px 2px 2px black;
 
-  }
+  color: seashell;
+  width: 900px;
+  font-size: 20px;
+}
 
-  #header{
-      text-align: center;
-      font-family: 'Merriweather Sans', sans-serif;
-      color: seashell;
-  }
+#header {
+  text-align: center;
+  font-family: "Merriweather Sans", sans-serif;
+  color: seashell;
+}
 
-  .container{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  h3, p{
-      color: seashell;
-      text-align: center;
-  }
+h3,
+p {
+  color: seashell;
+  text-align: center;
+}
 
-  .head{
-      border: 3px solid goldenrod;
-      box-shadow: 3px 3px 3px black;
-      background-color: slategray;
-  }
+.head {
+  border: 3px solid goldenrod;
+  box-shadow: 3px 3px 3px black;
+  background-color: slategray;
+  height: 90px;
+}
 
-  body{
-    /* background-image: url("./assets/concert.jpg");
+body {
+  /* background-image: url("./assets/concert.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 150%; */
-    font-family: 'Merriweather Sans', sans-serif;
-  }
+  font-family: "Merriweather Sans", sans-serif;
+}
 
-  .search{
-      width: 100%;
-      background: slategray;
-      padding: 30px;
-      border: 2px solid goldenrod;
-      box-shadow: 3px 3px 3px black;
-      justify-content: center;
-      align-items: center;
-  }
+.search {
+  margin: 30px;
+  width: 100%;
+  background: slategray;
+  padding: 30px;
+  border: 2px solid goldenrod;
+  box-shadow: 3px 3px 3px black;
+  justify-content: center;
+  align-items: center;
+}
 
-  #btn_submit{
-    border: 1px solid goldenrod; 
-    box-shadow: 1px 1px 1px 1px black; 
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-    background: slategray;
-    font-size: 25px;
-  }
+#btn_submit {
+  border: 1px solid goldenrod;
+  box-shadow: 1px 1px 1px 1px black;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  background: slategray;
+  font-size: 25px;
+}
 
-  input {
-      margin: 10px;
-      padding: 5px;
-  }
+input {
+  margin: 10px;
+  padding: 5px;
+}
 
-  input:focus{
-      background-color: rgb(253, 242, 143);
-  }
+input:focus {
+  background-color: rgb(253, 242, 143);
+}
 
-  .footer{
-      background: slategray;
-      margin: 20px;
-      border: 2px solid goldenrod;
-      box-shadow: 2px 2px 2px black;
-  }
+.footer {
+  background: slategray;
+  margin: 20px;
+  border: 2px solid goldenrod;
+  box-shadow: 2px 2px 2px black;
+  margin: 50px;
+  box-shadow: 3px 3px 3px black;
+}
 
-  .result_card{
-      color:white;
-    justify-content: left;
-    align-items: left;
-    height: 200px;
-    background-color:white;
-    margin:20px;
-  }
+.result_card {
+  color: white;
+  justify-content: left;
+  align-items: left;
+  height: 200px;
+  background-color: white;
+  margin: 20px;
+}
 
-  .event_name{
-    color: white;
-    justify-content: left;
-    align-items: left;
+.event_name {
+  color: white;
+  justify-content: left;
+  align-items: left;
+}
 
-  }
+#modal_p1,
+#modal_p2 {
+  color: black;
+}
 
-  #modal_p1, #modal_p2{
-      color:black;
-  }
-  
+h3 {
+  text-align: center;
+}
+
+th {
+  background: cadetblue;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+  margin: 10px;
+  border: 1px solid goldenrod;
+  box-shadow: 2px 2px 2px black;
+}
+
+#card-image {
+  height: 150px;
+  width: 100%;
+}
+
+.text {
+  color: black;
+  font-size: 24px;
+}
