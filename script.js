@@ -12,9 +12,10 @@ var location;
 
 //////add in some default values so I don't go crazy: (get rid of this for release)////////
 //to do list for bob:  
-//1) make the date and time nice
-//2) add the "buy tickets" link
-//3) choose the best picture to use based on the resolution
+//1) filter by checkboxes.
+//2) add in venue info
+//3) start with a default search
+//4) weather info?
 ////////////////////////////////////////////////////////////////
 
 $("#location").val("Austin");
@@ -51,7 +52,6 @@ $("#btn_submit").on("click", function (event) {
         event_array = response._embedded.events;
         
         var new_td;
-        var new_th;
         var clean_date;
         var timeZone;
         console.log(response);
@@ -90,6 +90,9 @@ $("#btn_submit").on("click", function (event) {
             $(new_card_row).css("background-image","url("+best_picture_url+")" );  
             $(new_card_row).css("background-repeat","no-repeat");
             $(new_card_row).css("background-size","cover");
+            
+           
+  
             $(new_card_row).append(new_td);
 
             ////////sales link////////
