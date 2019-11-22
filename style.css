@@ -54,13 +54,12 @@ body {
 
 .search {
   margin: 30px;
-  width: 100%;
+  width: 60%;
   background: slategray;
   padding: 30px;
   border: 2px solid goldenrod;
   box-shadow: 3px 3px 3px black;
-  justify-content: center;
-  align-items: center;
+  
 }
 
 #btn_submit {
@@ -117,7 +116,7 @@ h3 {
     color:white;
     text-align:left;
     opacity: 1.0;
-  /* text-align: center; */
+  text-align: center;
 }
 
 .result_card:hover {
@@ -128,4 +127,13 @@ h3 {
 .fa-ticket{
 margin-top: -50px;
 margin-left: 30px;    
+}
+
+.name{
+    font-size: 35px;
+    font-weight: bolder;
+}
+
+.text{
+    line-height: 1px;
 }
