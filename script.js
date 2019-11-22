@@ -12,11 +12,12 @@ var location;
 
 //////add in some default values so I don't go crazy: (get rid of this for release)////////
 //to do list for bob:  
-//1) filter by checkboxes.
-//2) add in venue info
+//1) 
+//2) --add in venue info
 //3) start with a default search
 //4) weather info?
 //5) add in longer description, if available
+//6) sub genre?
 ////////////////////////////////////////////////////////////////
 
 $("#location").val("New York");
@@ -58,24 +59,6 @@ $("#btn_submit").on("click", function (event) {
     queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?'+genre_string+'&locale=*&city=' + location + '&keyword=' + keyword + '&startDateTime=' + start_date + '&endDateTime=' + end_date + '&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 
     console.log(queryURL);
-
-    // $.ajax({
-    //     type:"GET",
-    //     url:"https://app.ticketmaster.com/discovery/v2/classifications.json?apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ",
-    //     //url:"https://app.ticketmaster.com/discovery/v2/classifications/vvG1GZ4lKsG0Ce.json?apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ",
-    //     async:true,
-    //     dataType: "json",
-    //     success: function(json) {
-    //                 console.log("here is the id details");
-    //                 console.log(json);
-    //                 // Parse the response.
-    //                 // Do other things.
-    //              },
-    //     error: function(xhr, status, err) {
-    //                 // This time, we do not end up here!
-    //              }
-    //   });
-
 
 
     $.ajax({
@@ -127,8 +110,13 @@ $("#btn_submit").on("click", function (event) {
             $(new_card_row).css("background-repeat","no-repeat");
             $(new_card_row).css("background-size","cover");
             
-           
-  
+           //////price range////////
+          //debugger;
+           var min_price=event_array[i].priceRanges[0].min.toFixed(2);
+           var max_price=event_array[i].priceRanges[0].max.toFixed(2);
+           var price_string="($"+min_price+" to $"+max_price+")";
+           new_td = $("<h5 class='price_range'>");
+           $(new_td).text(price_string);
             $(new_card_row).append(new_td);
 
             ////////sales link////////
