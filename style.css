@@ -14,18 +14,6 @@
   clear: both;
 }
 
-/* table,
-th,
-td {
-  border: 2px solid goldenrod;
-  border-collapse: collapse;
-  box-shadow: 2px 2px 2px black;
-
-  color: seashell;
-  width: 900px;
-  font-size: 20px;
-} */
-
 #header {
   text-align: center;
   font-family: "Merriweather Sans", sans-serif;
@@ -38,8 +26,7 @@ td {
   align-items: center;
 }
 
-h3,
-p {
+h3, p {
   color: seashell;
   text-align: center;
   /* This is really important for readibility on white pictures: (text-shadow) */
@@ -58,10 +45,10 @@ p {
 }
 
 body {
-  /* background-image: url("./assets/concert.jpg");
+  background-image: url("./assets/concert.jpg");
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 150%; */
+    background-size: 150%;
   font-family: "Merriweather Sans", sans-serif;
 }
 
@@ -111,6 +98,8 @@ input:focus {
   height: 200px;
   background-color: white;
   margin: 20px;
+  border: 1px solid goldenrod;
+  box-shadow: 2px 2px 2px black;
 }
 
 .event_name {
@@ -131,26 +120,12 @@ h3 {
   /* text-align: center; */
 }
 
-
-
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 200px;
-  margin: 10px;
-  border: 1px solid goldenrod;
-  box-shadow: 2px 2px 2px black;
+.result_card:hover {
+    opacity: 0.8;
 }
 
-#card-image {
-  height: 150px;
-  width: 100%;
-}
 
-.text {
-  color: black;
-  font-size: 24px;
+.fa-ticket{
+margin-top: -50px;
+margin-left: 30px;    
 }

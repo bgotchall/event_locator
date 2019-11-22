@@ -62,17 +62,19 @@ $("#btn_submit").on("click", function (event) {
         for (var i = 0; i < event_array.length; i++) {
             //debugger;
             new_card_row = $("<div></div>");
-            $(new_card_row).addClass("w3-row result_card");
+            $(new_card_row).addClass("w3-row w3-round-xxlarge result_card");
             $(new_card_row).attr("index",i);                //add the index so we can quicklky get which thing the user is interested in.
 
 
             ////////Event name///////////////////
             new_td = $("<h3>");
+            $(new_td).addClass("card-text");
             $(new_td).text(event_array[i].name);
             $(new_card_row).append(new_td);
 
             /////////date ("start date")//////////////
             new_td = $("<h3>");
+            $(new_td).addClass("card-text");
             timeZone = event_array[i].dates.timezone;
             var my_date_string = get_date_and_time(event_array[i].dates.start.dateTime, timeZone);
             $(new_td).text(my_date_string);
@@ -81,6 +83,7 @@ $("#btn_submit").on("click", function (event) {
 
             /////////venue/////////////
             new_td = $("<h3>");
+            $(new_td).addClass("card-text");
             $(new_td).text(event_array[i]._embedded.venues[0].name);
             $(new_card_row).append(new_td);
 
@@ -96,9 +99,10 @@ $("#btn_submit").on("click", function (event) {
             $(new_card_row).append(new_td);
 
             ////////sales link////////
-            new_td = $("<a class='ticket_sales_link'  target='_blank'> Ticket Sales</a>");
+            new_td = $("<a class='ticket_sales_link'  target='_blank'> Tickets</a>");
             console.log("sales link will be: "+ event_array[i].url)
             $(new_td).attr("href",event_array[i].url)
+            $(new_td).addClass("fa-3x fa fa-ticket");
             $(new_card_row).append(new_td);
                 
             //add other stuff to card before adding the div
