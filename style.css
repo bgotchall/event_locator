@@ -126,9 +126,15 @@ h3 {
 }
 
 
-.fa-ticket{
+.fa-3x{
 margin-top: -50px;
-margin-left: 30px;    
+margin-left: 30px; 
+text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+   
 }
 
 .price_range{
