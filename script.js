@@ -11,17 +11,8 @@ var TM_api_key = "3JcNn4ea56JrBolF27QIGsWgd58v9GSZ";
 var location;
 
 //////add in some default values so I don't go crazy: (get rid of this for release)////////
-//to do list for bob:  
-//1) 
-//2) --add in venue info
-//3) start with a default search
-//4) weather info?
-//5) add in longer description, if available
-//6) sub genre?
-////////////////////////////////////////////////////////////////
-
-$("#location").val("New York");
-console.log($("#start_date"));
+$("#location").val("Austin");
+//console.log($("#start_date"));
 $("#start_date").val("2019-11-16");
 $("#end_date").val("2019-12-20");
 
@@ -33,7 +24,7 @@ $("#btn_submit").on("click", function (event) {
     //debugger;
     var start_date = convert_date($("#start_date")[0].value);
     var end_date = convert_date($("#end_date")[0].value);
-    console.log($("#search_field")[0]);
+    //console.log($("#search_field")[0]);
     var keyword = $("#search_field")[0].value;
     var location = $("#location")[0].value;
 
@@ -51,14 +42,14 @@ $("#btn_submit").on("click", function (event) {
     if (cb_arts_theater){genre_string+="KZFzniwnSyZfZ7v7na,"}
     if (cb_misc){genre_string+="KZFzniwnSyZfZ7v7n1"}
     
-    console.log (genre_string);
+    //console.log (genre_string);
 
-    console.log("location read is: " + location);
+    //console.log("location read is: " + location);
 
     //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
     queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?'+genre_string+'&locale=*&city=' + location + '&keyword=' + keyword + '&startDateTime=' + start_date + '&endDateTime=' + end_date + '&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 
-    console.log(queryURL);
+    //console.log(queryURL);
 
 
     $.ajax({
@@ -111,13 +102,16 @@ $("#btn_submit").on("click", function (event) {
             $(new_card_row).css("background-size","cover");
             
            //////price range////////
-          //debugger;
-           var min_price=event_array[i].priceRanges[0].min.toFixed(2);
-           var max_price=event_array[i].priceRanges[0].max.toFixed(2);
-           var price_string="($"+min_price+" to $"+max_price+")";
-           new_td = $("<h5 class='price_range'>");
-           $(new_td).text(price_string);
-            $(new_card_row).append(new_td);
+          
+           var test_thing = event_array[i].priceRanges;
+           if (event_array[i].priceRanges!=undefined){
+                var min_price=event_array[i].priceRanges[0].min.toFixed(2);
+                var max_price=event_array[i].priceRanges[0].max.toFixed(2);
+                var price_string="($"+min_price+" to $"+max_price+")";
+                new_td = $("<h5 class='price_range'>");
+                $(new_td).text(price_string);
+                $(new_card_row).append(new_td);
+           }
 
             ////////sales link////////
             new_td = $("<a class='ticket_sales_link'  target='_blank'> Ticket Sales</a>");
@@ -140,13 +134,13 @@ $("#btn_submit").on("click", function (event) {
 $(document).on('click','.result_card',function(event){
     //click handler for the result cards.  pop up a modal window on this.
     console.log(event);
-         console.log("card was clicked?");
+         //console.log("card was clicked?");
          document.getElementById('id01').style.display='block';
          var this_index= $(event.currentTarget).attr("index");
          var this_item=event_array[this_index];
          $("#modal_p1").text(this_item.name);
          $("#modal_p2").text("Weather stuff here");
-         console.log(this_item);
+         //console.log(this_item);
 
 });
 
@@ -193,8 +187,3 @@ function get_best_url(images){
     return best_url;
 
 }
-//the segments it can take are:
-//Music
-//Sports
-//Miscellaneous
-//Arts & Theatre
