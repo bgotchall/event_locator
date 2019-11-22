@@ -78,7 +78,7 @@ $("#btn_submit").on("click", function (event) {
 
             ////////Event name///////////////////
             new_td = $("<h3>");
-            $(new_td).addClass("card-text");
+            $(new_td).addClass("card-text name");
             $(new_td).text(event_array[i].name);
             $(new_card_row).append(new_td);
 

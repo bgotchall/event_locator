@@ -54,7 +54,7 @@ body {
 
 .search {
   margin: 30px;
-  width: 100%;
+  width: 60%;
   background: slategray;
   padding: 30px;
   border: 2px solid goldenrod;
@@ -138,4 +138,9 @@ margin-left: 30px;
     1px -1px 0 #000,
     -1px 1px 0 #000,
      1px 1px 0 #000;
+}
+
+.name{
+  font-size: 35px;
+  font-weight: bolder;
 }
