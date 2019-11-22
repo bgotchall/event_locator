@@ -111,6 +111,7 @@ input:focus {
 #modal_p1,
 #modal_p2 {
   color: black;
+  text-shadow:none;
 }
 
 h3 {
