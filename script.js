@@ -11,15 +11,8 @@ var TM_api_key = "3JcNn4ea56JrBolF27QIGsWgd58v9GSZ";
 var location;
 
 //////add in some default values so I don't go crazy: (get rid of this for release)////////
-//to do list for bob:  
-//1) filter by checkboxes.
-//2) add in venue info
-//3) start with a default search
-//4) weather info?
-////////////////////////////////////////////////////////////////
-
 $("#location").val("Austin");
-console.log($("#start_date"));
+//console.log($("#start_date"));
 $("#start_date").val("2019-11-16");
 $("#end_date").val("2019-12-20");
 
@@ -31,15 +24,32 @@ $("#btn_submit").on("click", function (event) {
     //debugger;
     var start_date = convert_date($("#start_date")[0].value);
     var end_date = convert_date($("#end_date")[0].value);
-    console.log($("#search_field")[0]);
+    //console.log($("#search_field")[0]);
     var keyword = $("#search_field")[0].value;
     var location = $("#location")[0].value;
-    console.log("location read is: " + location);
+
+    //genres:
+    
+    var cb_music=$("#music").prop('checked')
+    var cb_sports=$("#sports").prop('checked')
+    var cb_arts_theater=$("#arts-theater").prop('checked')
+    var cb_misc=$("#misc").prop('checked')
+
+    var genre_string="";
+    if (cb_music||cb_sports||cb_arts_theater||cb_misc){genre_string="&segmentId="   } //only start this if something is selected
+    if (cb_music){genre_string+="KZFzniwnSyZfZ7v7nJ,"}
+    if (cb_sports){genre_string+="KZFzniwnSyZfZ7v7nE,"}
+    if (cb_arts_theater){genre_string+="KZFzniwnSyZfZ7v7na,"}
+    if (cb_misc){genre_string+="KZFzniwnSyZfZ7v7n1"}
+    
+    //console.log (genre_string);
+
+    //console.log("location read is: " + location);
 
     //queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?postalCode=78702&keyword='+keyword+'&startDateTime='+start_date+'&endDateTime='+end_date+'&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
-    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?&locale=*&city=' + location + '&keyword=' + keyword + '&startDateTime=' + start_date + '&endDateTime=' + end_date + '&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
+    queryURL = 'https://app.ticketmaster.com/discovery/v2/events.json?'+genre_string+'&locale=*&city=' + location + '&keyword=' + keyword + '&startDateTime=' + start_date + '&endDateTime=' + end_date + '&apikey=3JcNn4ea56JrBolF27QIGsWgd58v9GSZ';
 
-    console.log(queryURL);
+    //console.log(queryURL);
 
 
     $.ajax({
@@ -94,13 +104,23 @@ $("#btn_submit").on("click", function (event) {
             $(new_card_row).css("background-repeat","no-repeat");
             $(new_card_row).css("background-size","cover");
             
-           
-  
-            $(new_card_row).append(new_td);
+           //////price range////////
+          
+           var test_thing = event_array[i].priceRanges;
+           if (event_array[i].priceRanges!=undefined){
+                var min_price=event_array[i].priceRanges[0].min.toFixed(2);
+                var max_price=event_array[i].priceRanges[0].max.toFixed(2);
+                var price_string="($"+min_price+" to $"+max_price+")";
+                new_td = $("<h5 class='price_range'>");
+                $(new_td).text(price_string);
+                $(new_card_row).append(new_td);
+           }
 
             ////////sales link////////
+
             new_td = $("<a class='ticket_sales_link'  target='_blank'> Tickets</a>");
             console.log("sales link will be: "+ event_array[i].url)
+
             $(new_td).attr("href",event_array[i].url)
             $(new_td).addClass("fa-3x fa fa-ticket");
             $(new_card_row).append(new_td);
@@ -120,13 +140,13 @@ $("#btn_submit").on("click", function (event) {
 $(document).on('click','.result_card',function(event){
     //click handler for the result cards.  pop up a modal window on this.
     console.log(event);
-         console.log("card was clicked?");
+         //console.log("card was clicked?");
          document.getElementById('id01').style.display='block';
          var this_index= $(event.currentTarget).attr("index");
          var this_item=event_array[this_index];
          $("#modal_p1").text(this_item.name);
          $("#modal_p2").text("Weather stuff here");
-         console.log(this_item);
+         //console.log(this_item);
 
 });
 
@@ -173,8 +193,3 @@ function get_best_url(images){
     return best_url;
 
 }
-//the segments it can take are:
-//Music
-//Sports
-//Miscellaneous
-//Arts & Theatre
