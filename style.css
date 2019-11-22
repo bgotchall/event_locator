@@ -29,6 +29,12 @@
 h3, p {
   color: seashell;
   text-align: center;
+  /* This is really important for readibility on white pictures: (text-shadow) */
+  text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 }
 
 .head {
@@ -108,12 +114,16 @@ input:focus {
 }
 
 h3 {
-  text-align: center;
+    color:white;
+    text-align:left;
+    opacity: 1.0;
+  /* text-align: center; */
 }
 
 .result_card:hover {
     opacity: 0.8;
 }
+
 
 .fa-ticket{
 margin-top: -50px;
