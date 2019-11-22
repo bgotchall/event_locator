@@ -64,9 +64,9 @@ $("#btn_submit").on("click", function (event) {
         var new_td;
         var clean_date;
         var timeZone;
-        console.log(response);
-        console.log($("#start_date"));
-        console.log(event_array);
+        // console.log(response);
+        // console.log($("#start_date"));
+        // console.log(event_array);
         
 
         for (var i = 0; i < event_array.length; i++) {
@@ -119,7 +119,7 @@ $("#btn_submit").on("click", function (event) {
             ////////sales link////////
 
             new_td = $("<a class='ticket_sales_link'  target='_blank'> Tickets</a>");
-            console.log("sales link will be: "+ event_array[i].url)
+           // console.log("sales link will be: "+ event_array[i].url)
 
             $(new_td).attr("href",event_array[i].url)
             $(new_td).addClass("fa-3x fa fa-ticket");
@@ -139,7 +139,7 @@ $("#btn_submit").on("click", function (event) {
 
 $(document).on('click','.result_card',function(event){
     //click handler for the result cards.  pop up a modal window on this.
-    console.log(event);
+    //console.log(event);
          //console.log("card was clicked?");
          document.getElementById('id01').style.display='block';
          var this_index= $(event.currentTarget).attr("index");
