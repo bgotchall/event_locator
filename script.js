@@ -180,7 +180,7 @@ $("#btn_submit").on("click", function (event) {
                 //debugger
                 
                 var this_diff = get_diff(event_array[i].dates.start.localDate);
-                if (this_diff<4){
+                if (this_diff<5){
                      new_td = $("<img></img>");
                     icon_img_url=get_icon_url(event_array[i].dates.start.localDate);
                     $(new_td).attr("src",icon_img_url);
@@ -219,6 +219,7 @@ $(document).on("click", ".result_card", function (event) {
     //if this events date is within the next 5 days from now, there is a forecast for it.
     //all I need is the difference between the event_date-todays_date.  that is the index into
     //the weather array.  if it is 0-4, get the element.  if it is >4 then no forecast.
+    debugger;
     var my_code=0;
     icon_img_url="#";
     if (diff > 4) {
