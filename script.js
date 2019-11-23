@@ -19,6 +19,31 @@ $("#end_date").val("2019-12-20");
 var event_array;
 var daily_array = []; //for weather data
 //////////////////////////////////
+var weather_location = $("#location")[0].value;
+ /////////////////////////////////////////////////////////////////
+//first get the 5 day forecast:
+ queryURL =
+ "https://api.openweathermap.org/data/2.5/forecast?q=" +
+ weather_location +
+ "&units=imperial&appid=1dd029263e9a36200e5256b3f8ab4a28";
+$.ajax({
+ url: queryURL,
+ method: "GET"
+}).then(function (response) {
+ daily_array = [];
+ console.log(response);
+ forecast_array = response.list;
+
+ //downsample the array to just 5 days, indexed to the search time
+ for (var i = 0; i < forecast_array.length; i = i + 8) {
+     daily_array.push(forecast_array[i]);
+ }
+ 
+});
+/////////////////////////////////////////////////////////////////////////
+
+
+
 
 $("#btn_submit").on("click", function (event) {
     event.preventDefault;
@@ -156,31 +181,7 @@ $("#btn_submit").on("click", function (event) {
                 $("#card_container").append(new_card_row);
             }
         }
-        /////////////////////////////////////////////////////////////////
-
-        queryURL =
-            "https://api.openweathermap.org/data/2.5/forecast?q=" +
-            location +
-            "&units=imperial&appid=1dd029263e9a36200e5256b3f8ab4a28";
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            daily_array = [];
-            console.log(response);
-            forecast_array = response.list;
-
-            //downsample the array
-            for (var i = 0; i < forecast_array.length; i = i + 8) {
-                daily_array.push(forecast_array[i]);
-            }
-            //debugger;
-
-            //
-
-            //  $(".icon").html("src", "http://openweathermap.org/img/wn/" + icon + "@2x.png");
-        });
-        /////////////////////////////////////////////////////////////////////////
+       
     });
 });
 
@@ -198,7 +199,7 @@ $(document).on("click", ".result_card", function (event) {
     console.log(daily_array);
     console.log(event_array);
     console.log(this_item);
-    //debugger;
+    debugger;
     var this_events_date = this_item.dates.start.localDate;
     console.log(this_events_date);
 
@@ -211,6 +212,7 @@ $(document).on("click", ".result_card", function (event) {
     if (diff > 4) {
         $("#modal_p2").text("No Forecast Available");
     } else {
+        debugger;
         $("#modal_p2").text(
             "Forecast: " +
             daily_array[diff].weather[0]
@@ -219,7 +221,14 @@ $(document).on("click", ".result_card", function (event) {
             daily_array[diff].main.temp +
             "°F"
         );
+        //get the icon for this modal:
+        var my_code=daily_array[diff].weather[0].icon;
+        icon_img_url="http://openweathermap.org/img/wn/"+my_code+"@2x.png";
+        $("#modal_icon").attr("src",icon_img_url);
+        
     }
+   
+
 });
 
 function convert_date(in_date) {

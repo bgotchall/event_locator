@@ -150,3 +150,13 @@ text-shadow:
   font-size: 35px;
   font-weight: bolder;
 }
+
+.forecast_icon_modal{
+  align-items: center;
+  height:100px;
+}
+
+.w3-modal-content{
+  align-items: center;
+  text-align: center;
+}
