@@ -13,7 +13,7 @@ var location;
 //////add in some default values so I don't go crazy: (get rid of this for release)////////
 $("#location").val("Austin");
 //console.log($("#start_date"));
-$("#start_date").val("2019-11-22");
+$("#start_date").val("2019-11-23");
 $("#end_date").val("2019-12-20");
 
 var event_array;
@@ -176,6 +176,17 @@ $("#btn_submit").on("click", function (event) {
                 $(new_td).addClass("fa-3x fa fa-ticket");
                 $(new_card_row).append(new_td);
 
+                //////////forecast icon///////////
+                //debugger
+                
+                var this_diff = get_diff(event_array[i].dates.start.localDate);
+                if (this_diff<4){
+                     new_td = $("<img></img>");
+                    icon_img_url=get_icon_url(event_array[i].dates.start.localDate);
+                    $(new_td).attr("src",icon_img_url);
+                    $(new_card_row).append(new_td);
+                }
+                
                 //add other stuff to card before adding the div
 
                 $("#card_container").append(new_card_row);
@@ -199,7 +210,7 @@ $(document).on("click", ".result_card", function (event) {
     console.log(daily_array);
     console.log(event_array);
     console.log(this_item);
-    debugger;
+    //debugger;
     var this_events_date = this_item.dates.start.localDate;
     console.log(this_events_date);
 
@@ -208,11 +219,17 @@ $(document).on("click", ".result_card", function (event) {
     //if this events date is within the next 5 days from now, there is a forecast for it.
     //all I need is the difference between the event_date-todays_date.  that is the index into
     //the weather array.  if it is 0-4, get the element.  if it is >4 then no forecast.
-    //This partial solution will fail
+    var my_code=0;
+    icon_img_url="#";
     if (diff > 4) {
         $("#modal_p2").text("No Forecast Available");
+        icon_img_url="#";
     } else {
-        debugger;
+        //debugger;
+        my_code=daily_array[diff].weather[0].icon;
+        icon_img_url="http://openweathermap.org/img/wn/"+my_code+"@2x.png";
+        $("#modal_icon").attr("src",icon_img_url);
+
         $("#modal_p2").text(
             "Forecast: " +
             daily_array[diff].weather[0]
@@ -221,15 +238,33 @@ $(document).on("click", ".result_card", function (event) {
             daily_array[diff].main.temp +
             "°F"
         );
-        //get the icon for this modal:
-        var my_code=daily_array[diff].weather[0].icon;
-        icon_img_url="http://openweathermap.org/img/wn/"+my_code+"@2x.png";
-        $("#modal_icon").attr("src",icon_img_url);
+        
+        
+       
         
     }
    
 
 });
+
+function get_icon_url(event_date){
+    //return the icon code, from the 5 day forecast array, given a certain date. 
+    var diff = 0;
+    diff = get_diff(event_date);
+    //if this events date is within the next 5 days from now, there is a forecast for it.
+    //all I need is the difference between the event_date-todays_date.  that is the index into
+    //the weather array.  if it is 0-4, get the element.  if it is >4 then no forecast.
+    
+    if (diff > 4) {
+        return "#";           
+    } else {
+         //return daily_array[diff].weather[0].icon;
+         //my_code=daily_array[diff].weather[0].icon;
+         return "http://openweathermap.org/img/wn/"+daily_array[diff].weather[0].icon+"@2x.png";
+        
+    }
+        
+}
 
 function convert_date(in_date) {
     //convert a date from an input date field into the format that the API wants:
@@ -285,7 +320,7 @@ function get_diff(this_events_date) {
     //here I want to return the diff between the dates.  but if the later date is in
     //a new month, i will get a negative result.  so have to check if it is on a boundary and adjust.
     // events are always today or in the future.
-    answer = events_day - todays_day;
+    answer = parseInt(events_day) - parseInt(todays_day);
     if (answer < 0) {
         // say april 2 event observed on March 30.  that is 3 days diff.  2-30=-28.  add the length
         // of march (31)to the diff to correct.  -28_+31=3
