@@ -54,7 +54,7 @@ body {
 
 .search {
   margin: 30px;
-  width: 60%;
+  width: fit-content;
   background: slategray;
   padding: 30px;
   border: 2px solid goldenrod;
